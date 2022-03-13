@@ -13,16 +13,20 @@ with open("input.txt", "r") as file:
         
         line = line.split(" ")
         
-        starters.append(line[0])
         prev = ""
         for word in line:
-            if prev != "":
+            if prev == "":
+                starters.append(word)
+            else:
                 if prev in chain:
                     chain[prev].append(word)
                 else:
                     chain[prev] = [word]
-             
-            prev = word
+            
+            if word[-1] in ["!", "?", "."]:
+                prev = ""
+            else:
+                prev = word
 print(f"  Starter Count: {len(starters)}, Chain Count: {len(chain)}")
 print("  [DONE]")
 
@@ -100,7 +104,7 @@ template = f"""
         </head>
         <body onload="generate()">
             <script>
-                const response_goal = 250;
+                const response_goal = 500;
                 const starters = {json.dumps(starters)};
                 const chains = {json.dumps(chain)};
                 
@@ -116,7 +120,7 @@ template = f"""
                         for(curr = randomIn(starters); curr in chains; curr = randomIn(chains[curr])) {{
                             res += curr + " ";
                         }}
-                        res += curr;
+                        res += curr + " ";
                     }}
                     
                     document.getElementById("quote").innerHTML = res;
