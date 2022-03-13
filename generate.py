@@ -132,7 +132,7 @@ template = f"""
                 <button onclick="generate()">Regenerate</button>
                 
                 </br>
-                <p>Read Github README for explanation</p>
+                <p><b>Read <a target="_blank" href="https://github.com/19UV/Blabber">README</a> for explanation</b></p>
             </div>
         </body>
     </html>
