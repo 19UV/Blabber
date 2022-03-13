@@ -139,11 +139,13 @@ template = f"""
 """
 
 print("Writing Template File...")
-with open("template.html", "w") as template_file:
-    template_file.write(template)
+with open("output.html", "w") as output_html:
+    output_html.write(template)
 print("  [DONE]")
 
 """
+import random
+
 res = ""
 curr = random.choice(starters)
 while curr in chain:
